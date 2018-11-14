@@ -1,28 +1,28 @@
 // 0. take all 4 fighters and assign them to the choose your fighter screen. prompt the
 // user to choose their fighter
 
-var kreia = {
+var kreiaobj = {
     name: "kreia",
     health: 50,
     attack: 10,
     counter: 20
 };
 
-var revan = {
+var revanobj = {
     name: "revan",
     health: 25,
     attack: 20,
     counter: 10
 };
 
-var bastila = {
+var bastilaobj = {
     name: "bastila",
     health: 75,
     attack: 5,
     counter: 10
 };
 
-var exile = {
+var exileobj = {
     name: "exile",
     health: 90,
     attack: 5,
@@ -30,10 +30,10 @@ var exile = {
 };
 
 var heroObj = {
-    bastila: bastila,
-    kreia: kreia,
-    revan: revan,
-    exile: exile
+    bastila: bastilaobj,
+    kreia: kreiaobj,
+    revan: revanobj,
+    exile: exileobj
 };
 
 function temphide() {
@@ -92,32 +92,47 @@ $("#attackbutton").on("click", function() {
     console.log(roundcount);
     console.log(fighter);
     console.log(opponent);
-    attack(fighter, opponent, roundcount);
+    attack(heroObj[fighter], heroObj[opponent], roundcount);
 });
 
-function attack(param1, param2, param3) {
-    alert(param1);
-    alert(param2);
-    alert(param3);
+function attack(fighter, opponent, roundcount) {
+    fighterAttack = fighter.attack * roundcount;
+    fighterHealth = fighter.health;
 
-    //alert("hi");
-    // meAttack = parseInt(me.attack) * parseInt(fround);
-    // meHealth = parseInt(me.health);
-    // console.log(meAttack);
-    // console.log(meHealth);
-    // console.log(me.name);
-    // youAttack = you.counter;
-    // youHealth = you.health;
-    // console.log("hero has " + (meHealth - youAttack));
-    // console.log("opponent has " + (youHealth - meAttack));
-    // opponent.health = opponentHealth - fighterAttack;
-    // fighter.health = fighterHealth - opponentAttack;
+    alert(fighter.name);
+    alert(opponent.name);
+
+    // for the opponent - only use the counter attack, and do not multiply by what round it is
+    opponentAttack = opponent.counter;
+    opponentHealth = opponent.health;
+
+    fighter.health = fighterHealth - opponentAttack;
+    opponent.health = opponentHealth - fighterAttack;
+
+    console.log(
+        fighter.name +
+            " has hit " +
+            opponent.name +
+            " for " +
+            fighterAttack +
+            " points of damage!"
+    );
+    console.log(
+        opponent.name +
+            " has hit " +
+            fighter.name +
+            " for " +
+            opponentAttack +
+            " points of damage!"
+    );
+
+    console.log(fighter.name + " has " + fighter.health + " hit points left!");
+    console.log(
+        opponent.name + " has " + opponent.health + " hit points left!"
+    );
 }
 
-fighter = "kreia";
-opponent = "bastila";
+// // attack(heroObj[fighter], heroObj[opponent], 2);
+// //console.log(bastila.name);
 
-attack(heroObj.fighter, heroObj.opponent, 2);
-//console.log(bastila.name);
-
-//console.log(heroObj.kreia);
+// console.log(heroObj[fighter].name);
