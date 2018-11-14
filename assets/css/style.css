@@ -2,3 +2,12 @@
     width: 150px;
     margin: 2px;
 }
+
+#pick-hero {
+    text-align: center;
+}
+
+.col {
+    text-align: center;
+    border: 1px black solid;
+}

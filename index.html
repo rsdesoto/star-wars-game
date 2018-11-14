@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Crystals Game</title>
+        <title>Knights of the Old Republic 3: This Time It's Personal</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
             href="https://fonts.googleapis.com/css?family=Unica+One"
@@ -23,20 +23,71 @@
         />
     </head>
     <body>
-        <div>Placeholder</div>
-        <div id="matchup">Temporary</div>
-        <div id="actionUpdate1"></div>
-        <div id="actionUpdate2"></div>
-        <section id="my-hero"></section>
-        <br />
-        <section id="pick-hero"></section>
-        <br />
-        <section id="enemy"></section>
-        <img src="./assets/images/palpatine.gif" id="winnerDisplay" />
-        <img src="./assets/images/luke.gif" id="loserDisplay" />
-        <button id="attackbutton">Attack</button>
-        <button id="roundbutton">Next Round</button>
-        <button id="resetbutton">Reset Game</button>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>
+                        Knights of the Old Republic 3: This Time It's Personal
+                    </h1>
+                </div>
+            </div>
+            <div class="row"><div class="col" id="matchup"></div></div>
+            <div class="row"><div class="col" id="my-hero"></div></div>
+            <div class="row"><div class="col" id="pick-hero"></div></div>
+            <div class="row"><div class="col" id="enemy"></div></div>
+            <div class="row"><div class="col" id="actionUpdate1"></div></div>
+            <div class="row"><div class="col" id="actionUpdate2"></div></div>
+            <div class="row">
+                <div class="col">
+                    <img
+                        src="./assets/images/palpatine.gif"
+                        id="winnerDisplay"
+                    />
+                    <img src="./assets/images/luke.gif" id="loserDisplay" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                <button
+                    type="button"
+                    class="btn btn-dark justify-content-center"
+                    id="attackbutton"
+                >
+                    Attack
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-dark justify-content-center"
+                    id="roundbutton"
+                >
+                    Next Round
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-dark justify-content-center"
+                    id="resetbutton"
+                >
+                    Reset Game
+                </button>
+                <!--
+                    <button id="attackbutton">Attack</button>
+                    <button id="roundbutton">Next Round</button>
+                    <button id="resetbutton">Reset Game</button>
+                -->
+            </div>
+        </div>
+
+        <!-- <div id="matchup">Temporary</div> -->
+        <!--
+            <div id="actionUpdate1"></div>
+            <div id="actionUpdate2"></div>
+        -->
+
+        <!--
+            <img src="./assets/images/palpatine.gif" id="winnerDisplay" />
+            <img src="./assets/images/luke.gif" id="loserDisplay" />
+        -->
+
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

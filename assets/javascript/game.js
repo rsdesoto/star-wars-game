@@ -7,28 +7,28 @@ heroesArray = ["bastila", "revan", "kreia", "exile"];
 
 // hero stat objects
 var kreiaobj = {
-    name: "kreia",
+    name: "Kreia",
     health: 500,
     attack: 20,
     counter: 20
 };
 
 var revanobj = {
-    name: "revan",
+    name: "Revan",
     health: 25,
     attack: 20,
     counter: 10
 };
 
 var bastilaobj = {
-    name: "bastila",
+    name: "Bastila",
     health: 75,
     attack: 5,
     counter: 10
 };
 
 var exileobj = {
-    name: "exile",
+    name: "The Exile",
     health: 90,
     attack: 5,
     counter: 30
@@ -210,9 +210,11 @@ function winGame() {
     $("#enemy").empty();
     $("#my-hero").empty();
     $("#attackbutton").hide();
-    alert("Win!");
+
     $("#resetbutton").show();
     $("#winnerDisplay").show();
+    $("#actionUpdate1").empty();
+    $("#actionUpdate2").empty();
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -235,7 +237,13 @@ $("#pick-hero").on("click", ".hero", function(event) {
         opponentChosen = true;
         $("#attackbutton").show();
         $("#actionUpdate1").html("");
-        $("#matchup").html("<h2>" + fighter + " vs. " + opponent + "</h2>");
+        $("#matchup").html(
+            "<h2>" +
+                heroObj[fighter].name +
+                " vs. " +
+                heroObj[opponent].name +
+                "</h2>"
+        );
         // hide all other opponents
         $("#pick-hero").hide();
     }
