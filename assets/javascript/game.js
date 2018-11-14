@@ -7,46 +7,37 @@ heroesArray = ["bastila", "revan", "kreia", "exile"];
 
 // hero stat objects
 var kreiaobj = {
-    name: "Kreia",
-    health: 500,
-    attack: 20,
-    counter: 20
+    name: "Kreia"
 };
 
 var revanobj = {
-    name: "Revan",
-    health: 25,
-    attack: 20,
-    counter: 10
+    name: "Revan"
 };
 
 var bastilaobj = {
-    name: "Bastila",
-    health: 75,
-    attack: 5,
-    counter: 10
+    name: "Bastila"
 };
 
 var exileobj = {
-    name: "The Exile",
-    health: 90,
-    attack: 5,
-    counter: 30
+    name: "The Exile"
 };
 
 function setObj() {
-    // hero stat objects
-    kreiaobj.health = 500;
+    kreiaobj.health = 80;
     kreiaobj.attack = 20;
+    kreiaobj.counter = 20;
 
-    revanobj.health = 25;
-    revanobj.attack = 20;
+    revanobj.health = 125;
+    revanobj.attack = 25;
+    revanobj.counter = 10;
 
-    bastilaobj.health = 75;
-    bastilaobj.attack = 5;
+    bastilaobj.health = 100;
+    bastilaobj.attack = 30;
+    bastilaobj.counter = 25;
 
     exileobj.health = 90;
-    exileobj.attack = 5;
+    exileobj.attack = 15;
+    exileobj.counter = 25;
 }
 
 // associative array (for getting from text strings to objects -- i.e., if i have the string
@@ -121,19 +112,28 @@ function attack(fighter, opponent, roundcount) {
             " hit points left!"
     );
 
+    // update HP totals;
+    // newText.attr("id", heroesArray[i] + "hp");
+    $("#" + fighter.name.toLowerCase() + "hp").text(
+        fighter.name + ": " + fighter.health + " hp"
+    );
+    $("#" + opponent.name.toLowerCase() + "hp").text(
+        opponent.name + ": " + opponent.health + " hp"
+    );
+
     // check to see if a fighter is out
     checkEndCondition(fighter.health, opponent.health);
 }
 
 // make a function to check for game end -- if either party's health is below 0, round (and possibly game) end
 function checkEndCondition(fighterHealth, opponentHealth) {
-    if (fighterHealth < 0 && opponentHealth < 0) {
+    if (fighterHealth <= 0 && opponentHealth <= 0) {
         $("#matchup").html("<h2>You have defeated each other! Game over</h2>");
         loseGame();
-    } else if (fighterHealth < 0) {
+    } else if (fighterHealth <= 0) {
         $("#matchup").html("<h2>You lose :c</h2>");
         loseGame();
-    } else if (opponentHealth < 0) {
+    } else if (opponentHealth <= 0) {
         $("#matchup").html("<h2>You win!</h2>");
         remainingEnemy--;
         if (remainingEnemy > 0) {
@@ -169,10 +169,40 @@ function resetGame() {
     setObj();
 
     for (i = 0; i < heroesArray.length; i++) {
-        newImg = $("<img src='assets/images/" + heroesArray[i] + ".jpg'>");
-        newImg.attr("class", "hero");
-        newImg.attr("id", heroesArray[i]);
-        $("#pick-hero").append(newImg);
+        // let's write some bootstrap in jquery!!!
+        // create card
+        var newDiv = $("<div>");
+        newDiv.attr("class", "card hero");
+        newDiv.attr("id", heroesArray[i]);
+
+        // add image
+        var newImg = $("<img>");
+        newImg.attr("class", "card-img-top");
+        newImg.attr("src", "./assets/images/" + heroesArray[i] + ".jpg");
+
+        newDiv.append(newImg);
+
+        // add text
+        var newBody = $("<div>");
+        newBody.attr("class", "card-body");
+
+        var newText = $("<div>");
+        newText.attr("class", "card-text");
+        newText.text(
+            heroObj[heroesArray[i]].name +
+                ": " +
+                heroObj[heroesArray[i]].health +
+                " hp"
+        );
+        newText.attr("id", heroesArray[i] + "hp");
+
+        newBody.append(newText);
+
+        newDiv.append(newBody);
+
+        newDiv.width("200px");
+
+        $("#pick-hero").append(newDiv);
     }
     // set how many enemies are remaining
     remainingEnemy = 3;
@@ -222,15 +252,19 @@ function loseGame() {
 
 // on click event to set the hero and the opponent. For each, grab the ID of the picture clicked
 // then move the img with that ID from the pick-hero section to the "my hero" or "enemy" areas, respectively.
+
+// question: why does "(event.target) not work but (this) does?"
 $("#pick-hero").on("click", ".hero", function(event) {
     if (!heroChosen) {
-        fighter = $(event.target).attr("id");
+        //console.log($(this));
+        fighter = $(this).attr("id");
         var gameDiv = $("#" + fighter);
         gameDiv.appendTo($("#my-hero"));
         heroChosen = true;
+        //alert(fighter);
         $("#actionUpdate1").html("Pick your opponent!");
     } else if (!opponentChosen) {
-        opponent = $(event.target).attr("id");
+        opponent = $(this).attr("id");
         var gameDiv = $("#" + opponent);
         gameDiv.appendTo($("#enemy"));
         opponentChosen = true;
