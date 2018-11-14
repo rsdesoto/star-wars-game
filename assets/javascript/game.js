@@ -234,8 +234,6 @@ function winGame() {
     $("#attackbutton").hide();
     $("#resetbutton").show();
     $("#winnerDisplay").show();
-    // $("#actionUpdate1").empty();
-    // $("#actionUpdate2").empty();
 }
 
 function loseGame() {
