@@ -129,18 +129,10 @@ function attack(fighter, opponent, roundcount) {
 function checkEndCondition(fighterHealth, opponentHealth) {
     if (fighterHealth < 0 && opponentHealth < 0) {
         $("#matchup").html("<h2>You have defeated each other! Game over</h2>");
-        $("#attackbutton").hide();
-        $("#resetbutton").show();
-        $("#loserDisplay").show();
-        $("#my-hero").empty();
-        $("#enemy").empty();
+        loseGame();
     } else if (fighterHealth < 0) {
         $("#matchup").html("<h2>You lose :c</h2>");
-        $("#attackbutton").hide();
-        $("#resetbutton").show();
-        $("#loserDisplay").show();
-        $("#my-hero").empty();
-        $("#enemy").empty();
+        loseGame();
     } else if (opponentHealth < 0) {
         $("#matchup").html("<h2>You win!</h2>");
         remainingEnemy--;
@@ -210,11 +202,18 @@ function winGame() {
     $("#enemy").empty();
     $("#my-hero").empty();
     $("#attackbutton").hide();
-
     $("#resetbutton").show();
     $("#winnerDisplay").show();
-    $("#actionUpdate1").empty();
-    $("#actionUpdate2").empty();
+    // $("#actionUpdate1").empty();
+    // $("#actionUpdate2").empty();
+}
+
+function loseGame() {
+    $("#attackbutton").hide();
+    $("#resetbutton").show();
+    $("#loserDisplay").show();
+    $("#my-hero").empty();
+    $("#enemy").empty();
 }
 
 ////////////////////////////////////////////////////////////////////
