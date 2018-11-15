@@ -19,7 +19,7 @@ var bastilaobj = {
 };
 
 var exileobj = {
-    name: "The Exile"
+    name: "Exile"
 };
 
 function setObj() {
